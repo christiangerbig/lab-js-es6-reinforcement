@@ -1,12 +1,9 @@
-// ***************************************************************************
-// Iteration 1 - `for...of` loop
-// ***************************************************************************
-
 const getFirstNames = arr => {
   const userFirstNames = [];
   for (let user of arr) {
-    // Your code goes here ...
+    userFirstNames.push(user.firstName);
   }
+  return userFirstNames
 };
 
 getFirstNames(usersArray);
@@ -18,10 +15,15 @@ getFirstNames(usersArray);
 // ***************************************************************************
 
 const getFullNames = arr => {
-  // Your code goes here ...
+  const fullNames = [];
+  for (let user of arr) {
+    fullNames.push(`${user.firstName} ${user.lastName}`);
+  }
+  return fullNames
 };
 
 getFullNames(usersArray);
+
 // expected output:
 // [ 'Kirby Doyle', 'Tracie May', 'Kendra Hines', 'Kinney Howard',
 //   'Howard Gilmore', 'Rachelle Schneider', 'Lizzie Alford' ]
@@ -31,10 +33,21 @@ getFullNames(usersArray);
 // ***************************************************************************
 
 const getUsersCreditDetails = arr => {
-  // Your code goes here ...
+  const users = [];
+  for (let user of arr) {
+    let {firstName, lastName, balance} = user;
+    const userDetails = {
+      firstName,
+      lastName,
+      balance
+    }
+    users.push(userDetails);
+  }
+  return users;
 };
 
 getUsersCreditDetails(usersArray);
+
 // expected output:
 // [ { firstName: 'Kirby', lastName: 'Doyle', balance: '$3,570.06' },
 // { firstName: 'Tracie', lastName: 'May', balance: '$1,547.73' },
@@ -49,15 +62,32 @@ getUsersCreditDetails(usersArray);
 // ***************************************************************************
 
 const genderView = users => {
-  // Your code goes here ...
+  let femaleUsers = users.filter(
+    function(user) {
+      return user.gender == "female";
+    }
+  );
+  let maleUsers = users.filter(
+    function(user) {
+      return user.gender == "male";
+    }
+  );
+  let allUsers = {femaleUsers: getFullNames(femaleUsers),
+               maleUsers: getFullNames(maleUsers)}
+  return allUsers;
 };
 
 genderView(usersArray);
+
 // expected output:
 // {
 //    femaleUsers: [ 'Tracie May', 'Kendra Hines', 'Rachelle Schneider', 'Lizzie Alford' ],
 //    maleUsers: [ 'Kirby Doyle', 'Kinney Howard', 'Howard Gilmore' ]
 // }
+
+
+
+
 
 // ***************************************************************************
 // Bonus - Iteration 5
